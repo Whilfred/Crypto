@@ -3,47 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CryptoArtiva</title>
+  <title>ExCryp</title>
   
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Global styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      padding-bottom: 70px; /* espace pour la barre de nav fixe */
+      background-color: #f8f9fa;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Hero / Carousel */
+    .carousel-caption {
+      font-size: 0.9rem;
+    }
+
+    .carousel-caption h2 {
+      font-size: 1.2rem;
+    }
+
+    .carousel-caption p {
+      font-size: 0.9rem;
+    }
+
+    .carousel-caption .btn {
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .carousel-caption {
+        font-size: 1rem;
+      }
+      .carousel-caption h2 {
+        font-size: 2rem;
+      }
+      .carousel-caption p {
+        font-size: 1rem;
+      }
+      .carousel-caption .btn {
+        width: auto;
+        margin-top: 0;
+      }
+    }
+
+    /* Sections */
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    section .col-md-4, section .col-md-3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    section i {
+      margin-bottom: 10px;
+    }
+
+    main section {
+      padding: 20px 0;
+    }
+
+    /* Footer */
+    footer {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      padding-bottom: 80px; /* pour éviter que le texte soit caché par nav */
+    }
+
+    @media (min-width: 768px) {
+      footer {
+        font-size: 1rem;
+      }
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #007bff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      z-index: 1000;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    }
+
+    .bottom-nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottom-nav a i {
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+    }
+
+    .bottom-nav a.active {
+      color: #ffc107;
+    }
+
+    /* Header name */
+    .platform-name {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 12px 0;
+      z-index: 1050;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    body {
+      padding-top: 50px; /* pour ne pas cacher le contenu sous le header fixe */
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="bg-primary text-white p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="logo fs-3 fw-bold">CryptoArtiva</div>
-      <nav>
-        <a href="index.html" class="text-white mx-2">Accueil</a>
-        <a href="acheter.html" class="text-white mx-2">Acheter</a>
-        <a href="vendre.html" class="text-white mx-2">Vendre</a>
-        <a href="faq.html" class="text-white mx-2">FAQ</a>
-        <a href="contact.html" class="text-white mx-2">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Platform Name -->
+  <div class="platform-name">ExCryp</div>
 
   <!-- Hero / Carrousel -->
   <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="https://i.pinimg.com/1200x/4d/c6/1b/4dc61b401cc3ef378a46bdca2b88e995.jpg" class="d-block w-100" alt="Crypto">
-        <div class="carousel-caption d-none d-md-block">
-          <h2>Achetez et vendez vos cryptos facilement</h2>
-          <p>Paiement Mobile Money • Livraison rapide • Support WhatsApp</p>
-          <a href="acheter.html" class="btn btn-success me-2"><i class="fas fa-arrow-up"></i> Acheter</a>
-          <a href="vendre.html" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Vendre</a>
+        <div class="carousel-caption d-md-block bg-dark bg-opacity-50 rounded p-3">
+          <h2 class="fs-4 fs-md-2">Achetez et vendez vos cryptos facilement</h2>
+          <p class="mb-2">Paiement Mobile Money • Livraison rapide • Support WhatsApp</p>
+          <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+            <a href="acheter.html" class="btn btn-success"><i class="fas fa-arrow-up"></i> Acheter</a>
+            <a href="vendre.html" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Vendre</a>
+            <a href="contact.html" class="btn btn-warning"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
         </div>
       </div>
       <div class="carousel-item">
         <img src="https://i.pinimg.com/1200x/81/78/4e/81784e304f80f3f9801d17335717ea13.jpg" class="d-block w-100" alt="Bitcoin">
-        <div class="carousel-caption d-none d-md-block">
-          <h2>Transactions rapides et sécurisées</h2>
-          <p>Recevez votre crypto directement sur votre wallet</p>
+        <div class="carousel-caption d-md-block bg-dark bg-opacity-50 rounded p-3">
+          <h2 class="fs-4 fs-md-2">Transactions rapides et sécurisées</h2>
+          <p class="mb-2">Recevez votre crypto directement sur votre wallet</p>
           <a href="contact.html" class="btn btn-warning"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
       </div>
@@ -61,17 +185,17 @@
     <section class="text-center mb-5">
       <h2>Comment ça marche ?</h2>
       <div class="row mt-4">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
           <i class="fas fa-cart-plus fa-3x text-primary mb-2"></i>
           <h5>1. Passez commande</h5>
           <p>Choisissez la crypto et le montant.</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
           <i class="fas fa-mobile-alt fa-3x text-success mb-2"></i>
           <h5>2. Paiement Mobile Money</h5>
           <p>Paiement sécurisé et rapide.</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
           <i class="fas fa-wallet fa-3x text-warning mb-2"></i>
           <h5>3. Recevez votre crypto</h5>
           <p>Transfert instantané vers votre wallet.</p>
@@ -82,19 +206,19 @@
     <section class="text-center mb-5">
       <h2>Pourquoi nous choisir ?</h2>
       <div class="row mt-4">
-        <div class="col-md-3">
+        <div class="col-6 col-md-3 mb-3">
           <i class="fas fa-shipping-fast fa-2x text-primary mb-2"></i>
           <p>Transactions rapides</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-6 col-md-3 mb-3">
           <i class="fas fa-headset fa-2x text-success mb-2"></i>
           <p>Support WhatsApp</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-6 col-md-3 mb-3">
           <i class="fas fa-chart-line fa-2x text-warning mb-2"></i>
           <p>Taux transparents</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-6 col-md-3 mb-3">
           <i class="fas fa-smile fa-2x text-danger mb-2"></i>
           <p>Clients satisfaits</p>
         </div>
@@ -104,8 +228,15 @@
 
   <!-- Footer -->
   <footer class="bg-primary text-white text-center p-3">
-    <p>© 2026 CryptoArtiva - Paiement Mobile Money et Support WhatsApp</p>
+    <p>© 2026 ExCryp - Paiement Mobile Money et Support WhatsApp</p>
   </footer>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a>
+    <a href="acheter.html"><i class="fas fa-arrow-up"></i> Acheter</a>
+    <a href="vendre.html"><i class="fas fa-arrow-down"></i> Vendre</a>
+  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
