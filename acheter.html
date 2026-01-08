@@ -148,40 +148,66 @@ const rates = {
 };
 
 const usdtNetworks = ["TRC20","ERC20","BEP20"];
-
 function updateUI(){
-    const give = giveSelect.value;
-    const amount = Number(giveAmount.value);
+    const give=giveSelect.value;
+    const amount=Number(giveAmount.value);
+    const selectedOption=country.options[country.selectedIndex];
+    countryFlag.src=selectedOption.getAttribute('data-flag');
+
+    const cryptoLogo=document.getElementById("cryptoLogo");
+    const paymentLogos=document.getElementById("paymentLogos");
+
+    // Clear payment logos
+    paymentLogos.innerHTML = "";
 
     if(give==="FCFA"){
+        // On donne Mobile Money
         mobileFields.style.display="block";
         giveNetwork.style.display="none";
-        if(amount>=3000){
-            const usdtQty = (amount / rates.FCFA_to_USDT).toFixed(6);
-            priceBox.textContent = `≈ ${usdtQty} USDT`;
+
+        // Montant
+        if(amount>=3000 && amount<=200000){
+            priceBox.textContent=`≈ ${(amount/rates.FCFA_to_USDT).toFixed(6)} USDT`;
         } else {
-            priceBox.textContent = "Montant minimum : 3000 FCFA";
+            priceBox.textContent="";
         }
+
+        // Logo "Je reçois" = USDT
+        cryptoLogo.src = "https://i.pinimg.com/1200x/a4/40/d4/a440d4b512f4d2b9b63d3ab8818fc9e3.jpg";
     } else {
+        // On donne USDT
         mobileFields.style.display="none";
         giveNetwork.style.display="block";
         giveNetwork.innerHTML="";
         usdtNetworks.forEach(n=>{
-            const o = document.createElement("option");
-            o.textContent = n;
+            let o=document.createElement("option");
+            o.textContent=n;
             giveNetwork.appendChild(o);
         });
-        if(amount>0){
-            const fcfaQty = (amount * rates.USDT_to_FCFA).toLocaleString();
-            priceBox.textContent = `≈ ${fcfaQty} FCFA`;
-        } else {
-            priceBox.textContent = "";
-        }
+
+        if(amount>0) priceBox.textContent=`≈ ${(amount*rates.USDT_to_FCFA).toLocaleString()} FCFA`;
+        else priceBox.textContent="";
+
+        // Logo "Je reçois" = Mobile Money choisi
+        let operator = document.getElementById("operator").value;
+        let logoUrl = "";
+        if(operator==="Orange Money") logoUrl="https://i.pinimg.com/736x/e2/cc/bf/e2ccbf284b0f18ae6e8dc544ac097f4c.jpg";
+        else if(operator==="MTN MoMo") logoUrl="https://i.pinimg.com/1200x/f2/f9/38/f2f9385a59cf088b7b77472f3636d4fb.jpg";
+        else if(operator==="Wave") logoUrl="https://upload.wikimedia.org/wikipedia/commons/2/28/Wave_logo.png";
+        else if(operator==="Moov Money") logoUrl="https://upload.wikimedia.org/wikipedia/commons/1/1b/Moov_Money_logo.png";
+        else if(operator==="Celtiis") logoUrl="https://upload.wikimedia.org/wikipedia/commons/3/37/Celtiis_logo.png";
+
+        cryptoLogo.src = logoUrl;
     }
 }
 
+// Ajouter updateUI à l'événement change de l'opérateur
+document.getElementById("operator").addEventListener("change", updateUI);
+
 giveSelect.addEventListener("change",updateUI);
 giveAmount.addEventListener("input",updateUI);
+country.addEventListener("change",updateUI);
+
 updateUI();
 </script>
 
