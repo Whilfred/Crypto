@@ -21,6 +21,7 @@ font-size:1.1rem;font-weight:bold;color:#fff}
 .price-box{text-align:center;font-weight:bold;margin-top:15px;background:#e9f7ef;
 color:#28a745;padding:15px;border-radius:12px;font-size:1.2rem}
 .error-message{color:red;font-weight:bold;margin-top:10px;display:none;text-align:center}
+#receiveLogo{display:block;margin:10px auto 0;width:60px;height:60px;object-fit:contain;}
 /* Bottom nav */
 .bottom-nav {
     position: fixed;
@@ -53,7 +54,6 @@ color:#28a745;padding:15px;border-radius:12px;font-size:1.2rem}
     color: #28a745;
     transform: translateY(-3px);
 }
-
 </style>
 </head>
 
@@ -110,6 +110,8 @@ color:#28a745;padding:15px;border-radius:12px;font-size:1.2rem}
 
 <div id="priceBox" class="price-box"></div>
 
+<img id="receiveLogo" src="" alt="Logo Réception">
+
 <!-- Réception USDT -->
 <div id="receiveCrypto" style="display:none">
 <select id="receiveCryptoNetwork">
@@ -152,6 +154,7 @@ color:#28a745;padding:15px;border-radius:12px;font-size:1.2rem}
 
 <script>
 const rates={FCFA_USDT:607.88,USDT_FCFA:559.75};
+const receiveLogo=document.getElementById("receiveLogo");
 
 function updateUI(){
  const give=giveSelect.value;
@@ -162,11 +165,24 @@ function updateUI(){
  receiveCrypto.style.display=give==="FCFA"?"block":"none";
  receiveMobile.style.display=give==="USDT"?"block":"none";
 
+ // Prix
  if(give==="FCFA" && amount>0)
   priceBox.textContent=`≈ ${(amount/rates.FCFA_USDT).toFixed(2)} USDT`;
  else if(give==="USDT" && amount>0)
   priceBox.textContent=`≈ ${(amount*rates.USDT_FCFA).toFixed(0)} FCFA`;
  else priceBox.textContent="";
+
+ // Logo réception
+if(give==="FCFA"){
+    receiveLogo.src="https://i.pinimg.com/1200x/a4/40/d4/a440d4b512f4d2b9b63d3ab8818fc9e3.jpg"; // USDT logo
+}else{
+    const op=receiveOperator.value;
+    if(op==="Orange Money") receiveLogo.src="https://i.pinimg.com/736x/e2/cc/bf/e2ccbf284b0f18ae6e8dc544ac097f4c.jpg";
+    else if(op==="MTN MoMo") receiveLogo.src="https://i.pinimg.com/1200x/f2/f9/38/f2f9385a59cf088b7b77472f3636d4fb.jpg";
+    else if(op==="Wave") receiveLogo.src="https://depotmobilemoney.com/images/produits/wave.jpg";
+    else if(op==="Moov Money") receiveLogo.src="https://www.lenouvelliste.ma/wp-content/uploads/2025/11/Moov-Money.jpg";
+    else if(op==="Celtiis") receiveLogo.src="https://sckaler.cloud/celtiiscash.png";
+}
 }
 
 continueBtn.onclick=()=>{
@@ -197,9 +213,9 @@ continueBtn.onclick=()=>{
  window.open("https://wa.me/2290154108665?text="+encodeURIComponent(msg));
 };
 
-["giveSelect","giveAmount"].forEach(id=>{
- document.getElementById(id).addEventListener("input",updateUI);
-});
+// Événements
+["giveSelect","giveAmount"].forEach(id=>document.getElementById(id).addEventListener("input",updateUI));
+receiveOperator.addEventListener("change",updateUI);
 
 updateUI();
 </script>
